@@ -39,6 +39,7 @@ class ConectFour:
         
         self.currentGame[positionLetter] = position
         print(self.currentGame[positionLetter])
+        print("it o")
        
 
 
