@@ -3,6 +3,7 @@ import time
 class ConectFour:
     currentGame = {}
     turn = 1
+    winner = False
     def __init__(self, player1="player1", player2="player2"):
         self.player1=player1
         self.player2=player2
@@ -34,6 +35,25 @@ class ConectFour:
         positionLetter = ""
         position = []
         
+        nc = 0
+        if positionNum == "1":
+               nc = 1
+        elif positionNum == "2":
+               nc = 3
+        elif positionNum == "3":
+               nc = 5
+        elif positionNum == "4":
+               nc = 7
+        elif positionNum == "5":
+               nc = 9
+        elif positionNum == "6":
+               nc = 11
+        elif positionNum == "7":
+               nc = 13
+        positionLetter = self.checkBoard(positionNum)
+        position = self.currentGame[positionLetter]
+        position[nc] = chip
+        self.currentGame[positionLetter] = position
         
         if positionNum == "1":
             self.checkBoard("1")
@@ -72,29 +92,32 @@ class ConectFour:
                 letter = "G"
                 break
             check = self.currentGame["F"]
-            if check[1] == " ":
+            if check[nc] == " ":
                 letter = "F"
                 break
             check = self.currentGame["E"]
-            if check[1] == " ":
+            if check[nc] == " ":
                 letter = "E"
                 break
             check = self.currentGame["D"]
-            if check[1] == " ":
+            if check[nc] == " ":
                 letter = "D"
                 break
             check = self.currentGame["C"]
-            if check[1] == " ":
+            if check[nc] == " ":
                  letter = "C"
                  break
             check = self.currentGame["B"]
-            if check[1] == " ":
+            if check[nc] == " ":
                  letter = "B"
                  break
             check = self.currentGame["A"]
-            if check[1] == " ":
-                 letter = "A"
-                 break
+            if check[nc] == " ":
+                letter = "A"
+                break
+            else:
+                print("ERROR")
+                break
         
         return letter
     
@@ -105,8 +128,7 @@ class ConectFour:
             print(*value,sep="")
 
     def clearBoard(self):
-            os.system('cls' if os.name == 'nt' else 'clear')
-        
+      print('\n' * 50)
     
     def playerInput(self, playerIn):
             play = input(playerIn + " choose a number to play:")
@@ -135,4 +157,10 @@ game.playerNames()
 game.printNames()
 game.gameBoard()
 game.updateBoard()
-game.playgame()
+#while winner == False
+n = 0
+while n < 42 or winner == True:
+    n+=1
+    game.playgame()
+    game.clearBoard()
+    game.updateBoard()
