@@ -161,14 +161,17 @@ class ConectFour:
     
     def checkWinner(self, pnum,plett,chip):
         con4 = 0
+        count = 2
         line = []
         line = self.currentGame[plett]
         #print(pnum)
         #print(". "+ chip + " . " + line[pnum])
         #check horizonat right
-        while True
-            if pnum + 2 < 15 and  line[pnum + 2] == chip:      
+        while True and con4 != 4:
+            if pnum + count < 15 and  line[pnum + count] == chip: 
+                count +=2     
                 con4 += 1
+                print("loop")
             else:
                 break
         
@@ -188,7 +191,7 @@ game.gameBoard()
 game.updateBoard()
 #while winner == False
 n = 0
-while n < 42 or winner == True:
+while n < 42 or game.winner == True:
     n+=1
     game.playgame()
     #game.clearBoard()
