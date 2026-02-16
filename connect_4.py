@@ -23,8 +23,7 @@ class ConectFour:
 
        boardlist={"top":topLine,"A": lineA,"B":lineB, "C":lineC,"D":lineD,"E":lineE,"F":lineF,"G":lineG,"bottom":bottomLine}
 
-       for v in boardlist.values():
-           print(*v,sep="")
+       
 
        self.currentGame = boardlist
        
@@ -38,15 +37,10 @@ class ConectFour:
             
         
         self.currentGame[positionLetter] = position
-        print(self.currentGame[positionLetter])
-        print("it o")
-       
-
-
-        if chip == "X":
-            print(chip)
-        elif chip == "O":
-            print(chip)
+        
+    def updateBoard(self):
+        for value in self.currentGame.values():
+            print(*value,sep="")
 
 
 
@@ -58,4 +52,4 @@ game = ConectFour("Andy", "Nikole")
 game.printNames()
 game.gameBoard()
 game.playChip("X","G","1")
-game.gameBoard()
+game.updateBoard()
