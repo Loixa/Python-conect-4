@@ -54,6 +54,8 @@ class ConectFour:
         position = self.currentGame[positionLetter]
         position[nc] = chip
         self.currentGame[positionLetter] = position
+        #check for winner
+        self.checkWinner(nc,positionLetter,chip)
         
         if positionNum == "1":
             self.checkBoard("1")
@@ -107,7 +109,7 @@ class ConectFour:
             if check[nc] == " ":
                  letter = "C"
                  break
-            check = self.currentGame["B"]
+            check = self.currentGame["B"] 
             if check[nc] == " ":
                  letter = "B"
                  break
@@ -128,10 +130,15 @@ class ConectFour:
             print(*value,sep="")
 
     def clearBoard(self):
-      print('\n' * 50)
+      print('\n' * 30)
     
     def playerInput(self, playerIn):
-            play = input(playerIn + " choose a number to play:")
+            while True:
+                play = input(playerIn + " choose a number to play:")
+                if int(play) > 0 and int(play) < 8:
+                    break
+                else:
+                    print("Please enter a valid input!")
             return play
     
     def playgame(self):
@@ -149,6 +156,28 @@ class ConectFour:
     def playerNames(self):
         self.player1 = input("Player 1 Enter Name: ")
         self.player2 = input("Player 2 Enter Name: ")
+    
+    
+    
+    def checkWinner(self, pnum,plett,chip):
+        con4 = 0
+        line = []
+        line = self.currentGame[plett]
+        #print(pnum)
+        #print(". "+ chip + " . " + line[pnum])
+        #check horizonat right
+        while True
+            if pnum + 2 < 15 and  line[pnum + 2] == chip:      
+                con4 += 1
+            else:
+                break
+        
+        
+    
+    
+    
+    
+    
 
 
 
@@ -162,5 +191,5 @@ n = 0
 while n < 42 or winner == True:
     n+=1
     game.playgame()
-    game.clearBoard()
+    #game.clearBoard()
     game.updateBoard()
