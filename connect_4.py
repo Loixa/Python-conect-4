@@ -157,25 +157,95 @@ class ConectFour:
         self.player1 = input("Player 1 Enter Name: ")
         self.player2 = input("Player 2 Enter Name: ")
     
-    
+    def changePosition(self,position,direction):
+        poschange = ""
+    #move up
+        if direction == "UP":
+            if position == "G":
+                poschange = "F"
+            elif position == "F":
+                poschange = "E"
+            elif position == "E":
+                poschange = "D"
+            elif position == "D":
+                poschange = "C"            
+            elif position == "C":
+                poschange = "B"
+            elif position == "B":
+                poschange = "A"
+            elif position == "A"
+                print("out of bound up")
+    #MOVE DOWN POSITION
+        elif direction == "DOWN":
+             if position == "G":
+                 print("out of bound down")
+             elif position == "F":
+                 poschange = "G"
+             elif position == "E":
+                 poschange = "F"
+             elif position == "D":
+                 poschange = "E"            
+             elif position == "C":
+                 poschange = "D"
+             elif position == "B":
+                 poschange = "C"
+             elif position == "A"
+                 poschange = "B"
+                
+        return poschange
+        
+        
+        
     
     def checkWinner(self, pnum,plett,chip):
-        con4 = 0
-        count = 2
+        con4 = 1
         line = []
+        pnumtest = pnum
+        playername = ""
         line = self.currentGame[plett]
+        if chip == "X":
+            playername = self.player1
+        elif chip == "O":
+            playername = self.player2
+        
         #print(pnum)
         #print(". "+ chip + " . " + line[pnum])
-        #check horizonat right
-        while True and con4 != 4:
-            if pnum + count < 15 and  line[pnum + count] == chip: 
-                count +=2     
+        #check horizontal right**********************************************
+        while True:
+            if pnum + 2 < 15 and  line[pnum + 2] == chip:      
                 con4 += 1
-                print("loop")
+                pnum += 2
+                
+                if con4 >= 4:
+                    break
+                
+            else:
+                
+                break
+        pnum = pnumtest
+        #check horizontal left**********************************************
+        while True:
+            if pnum + 2 < 15 and pnum - 2 > 0 and line[pnum - 2] == chip:
+                con4 += 1
+                pnum -= 2
+                if con4 >= 4:
+                    break
             else:
                 break
-        
-        
+        #check vertical up**********************************************
+        while True:
+            
+            if self.changePosition(plett,"UP")
+            
+            
+            
+            
+    #check if theres 4 in a row **********************************************
+        if con4 == 4:
+            
+            self.winner = True
+            self.updateBoard()
+            print(playername + " WINS!!!!!!!!!!!!!!!!!")
     
     
     
@@ -191,8 +261,9 @@ game.gameBoard()
 game.updateBoard()
 #while winner == False
 n = 0
-while n < 42 or game.winner == True:
+while n < 42 and game.winner == False:
     n+=1
     game.playgame()
     #game.clearBoard()
-    game.updateBoard()
+    if game.winner == False:
+        game.updateBoard()
