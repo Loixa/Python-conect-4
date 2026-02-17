@@ -173,7 +173,7 @@ class ConectFour:
                 poschange = "B"
             elif position == "B":
                 poschange = "A"
-            elif position == "A"
+            elif position == "A":
                 print("out of bound up")
     #MOVE DOWN POSITION
         elif direction == "DOWN":
@@ -189,7 +189,7 @@ class ConectFour:
                  poschange = "D"
              elif position == "B":
                  poschange = "C"
-             elif position == "A"
+             elif position == "A":
                  poschange = "B"
                 
         return poschange
@@ -208,8 +208,7 @@ class ConectFour:
         elif chip == "O":
             playername = self.player2
         
-        #print(pnum)
-        #print(". "+ chip + " . " + line[pnum])
+        
         #check horizontal right**********************************************
         while True:
             if pnum + 2 < 15 and  line[pnum + 2] == chip:      
@@ -233,10 +232,20 @@ class ConectFour:
             else:
                 break
         #check vertical up**********************************************
+        #left and right is no go so reset and check up and down
+        con4 = 1
+        pnum = pnumtest
         while True:
-            
-            if self.changePosition(plett,"UP")
-            
+            newposition = self.changePosition(plett,"UP")
+            line =  self.currentGame[newposition]
+            if line[pnum] == chip:
+                con4 += 1
+                print("found up")
+            else:
+                print("nothing up")
+                break
+
+
             
             
             
