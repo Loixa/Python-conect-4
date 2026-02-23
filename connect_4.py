@@ -59,15 +59,7 @@ class ConectFour:
                 
                 if positionNum == "1":
                     self.checkBoard("1")
-                #position = self.currentGame[positionLetter]
-        
-        
-                #if int(positionNum) % 2 ==0 and int(positionNum)>0 or int(positionNum)==1:
-                 #   position[int(positionNum)] = chip
-                    
                 
-                #self.currentGame[positionLetter] = position
-            
             def checkBoard(self, num):
                 letter = ""
                 checking = False
@@ -174,13 +166,13 @@ class ConectFour:
                     elif position == "B":
                         poschange = "A"
                     elif position == "A":
-                        print("out of bound up")
+                        
                         poschange = "out of bound"
             #MOVE DOWN POSITION
                 elif direction == "DOWN":
                      if position == "G":
                          poschange = "out of bound"
-                         print("out of bound down")
+                         
                      elif position == "F":
                          poschange = "G"
                      elif position == "E":
@@ -193,10 +185,7 @@ class ConectFour:
                          poschange = "C"
                      elif position == "A":
                          poschange = "B"
-            #CROSS RIGHT position
-             #   elif direction == "CROSS RIGHT":
-            #        if position == "G":
-                        #poschange ="F"
+        
                         
                 return poschange
                 
@@ -222,6 +211,7 @@ class ConectFour:
                         pnum += 2
                         
                         if con4 >= 4:
+                            
                             break
                         
                     else:
@@ -239,55 +229,57 @@ class ConectFour:
                         break
                 #check vertical up**********************************************
                 #left and right is no go so reset and check up and down
-                con4 = 1
-                pnum = pnumtest
-                while True:
-                    newposition = self.changePosition(plett,"UP")
-                    if newposition == "out of bound":
-                        break
+                if con4 < 4:
+                    con4 = 1
+                    pnum = pnumtest
+                    while True and con4 == 1:
+                        newposition = self.changePosition(plett,"UP")
+                        if newposition == "out of bound":
+                            break
 
-                    line = self.currentGame[newposition]
+                        line = self.currentGame[newposition]
                     
-                    if line[pnum] == chip:
-                        con4 += 1
+                        if line[pnum] == chip:
+                            con4 += 1
                         
-                    else:
+                        else:
                         
-                        break
+                            break
                 #check down*****************************************************
-                con4 = 1
-                pnum = pnumtest
-                downpost = plett
-                while True:
-                    newposition = self.changePosition(downpost,"DOWN")
-                    if newposition == "out of bound":
-                        break
-                    line = self.currentGame[newposition]
                     
-                    if line[pnum] == chip:
-                        con4 += 1
-                        downpost = newposition
+                    pnum = pnumtest
+                    downpost = plett
+                    while True:
+                        newposition = self.changePosition(downpost,"DOWN")
+                        if newposition == "out of bound":
+                            break
+                        line = self.currentGame[newposition]
                     
-                    else:
+                        if line[pnum] == chip:
+                            con4 += 1
+                            downpost = newposition
                     
-                        break
+                        else:
+                    
+                            break
                 #check cross ***********************************************
-                con4 = 1
-                crosspost = plett
-                pnum = pnumtest
-                while True:
-                    newposition = self.changePosition(crosspost,"UP")
-                    if newposition == "out of bound":
-                        break
-                    line = self.currentGame[newposition]
-                    if pnum + 2 < 15 and line[pnum + 2] == chip:
-                        con4 += 1
-                        pnum += 2
-                        crosspost = newposition
-                    else:
+                if con4 < 4:
+                    con4 = 1
+                    crosspost = plett
+                    pnum = pnumtest
+                    while True:
+                        newposition = self.changePosition(crosspost,"UP")
+                        if newposition == "out of bound":
+                            break
+                        line = self.currentGame[newposition]
+                        if pnum + 2 < 15 and line[pnum + 2] == chip:
+                            con4 += 1
+                            pnum += 2
+                            crosspost = newposition
+                        else:
                         
-                        break
-                pnum=pnumtest
+                            break
+                
                 crosspost = plett
                 pnum = pnumtest
                 if con4 != 4:
@@ -303,25 +295,27 @@ class ConectFour:
                         else:
                             break
             #check cross up left right down*******************************************
-                con4 = 1
-                crosspost = plett
-                pnum = pnumtest         
-                while True:
-                    newposition = self.changePosition(crosspost,"UP")
-                    if newposition == "out of bound":
-                        break
-                    line = self.currentGame[newposition]
-                    if pnum + 2 < 15 and pnum - 2 > 0 and line[pnum -2 ] == chip:
-                        con4 += 1
-                        pnum -= 2
-                        crosspost = newposition
-                        print("found one up left")
-                    else:
-                        print("break")              
-                        break
-                    pnum=pnumtest
+                if con4 < 4:
+                    
+                    con4 = 1
                     crosspost = plett
-                    pnum = pnumtest
+                    pnum = pnumtest         
+                    while True:
+                        newposition = self.changePosition(crosspost,"UP")
+                        if newposition == "out of bound":
+                            break
+                        line = self.currentGame[newposition]
+                        if pnum + 2 < 15 and pnum - 2 > 0 and line[pnum -2 ] == chip:
+                            con4 += 1
+                            pnum -= 2
+                            crosspost = newposition
+                    
+                        else:
+                                 
+                            break
+                
+                crosspost = plett
+                pnum = pnumtest
                 if con4 != 4:
                     while True:
                         newposition = self.changePosition(crosspost,"DOWN")
@@ -331,10 +325,10 @@ class ConectFour:
                         if pnum + 2 < 15 and line[pnum + 2] == chip:
                             con4 += 1
                             pnum += 2
-                            print("found one down right")
+                    
                             crosspost = newposition
                         else:
-                            print("break 2")
+                            
                             break
             #check if theres 4 in a row **********************************************
                 if con4 == 4:
@@ -342,7 +336,7 @@ class ConectFour:
                     self.winner = True
                     self.updateBoard()
                     print(playername + " WINS!!!!!!!!!!!!!!!!!")
-            
+                
             
             
             
@@ -355,11 +349,10 @@ game.playerNames()
 game.printNames()
 game.gameBoard()
 game.updateBoard()
-#while winner == False
+
 n = 0
 while n < 42 and game.winner == False:
     n+=1
     game.playgame()
-#game.clearBoard()
     if game.winner == False:
         game.updateBoard()
